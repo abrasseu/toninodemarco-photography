@@ -1,0 +1,39 @@
+// FONT
+@import 'https://fonts.googleapis.com/css?family=Catamaran:200';
+$font-thin: 200;
+$font-normal: 400;
+$font-bold: 600;
+
+// COLORS
+$color-light: #fff;
+$color-dark: #111;
+$color-darker: #000;
+$color-background: #1E1E1E;
+$color-lightgrey: #888;
+
+// MEDIA QUERIES
+$mq-max-xs: 'max-width: 355px';
+$mq-max-sm: 'max-width: 575px';
+$mq-min-sm: 'min-width: 576px';
+$mq-min-md: 'min-width: 768px';
+$mq-min-lg: 'min-width: 992px';
+$mq-min-xl: 'min-width: 1200px';
+
+
+@import 'structures';
+@import 'design';
+@import 'slideshow';
+@import 'portfolio';
+
+/*	===============	TEST	===============	*/
+/*
+	.pop-cookie {
+		z-index: 1500;
+		position: fixed;
+		top: 84px;
+		right: 0;
+		max-width: 300px;
+		max-height: 60px;
+	}
+
+/**/

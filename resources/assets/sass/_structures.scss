@@ -1,0 +1,83 @@
+/*	===============	HEADER	===============	*/
+	
+	#logo {
+		height: 35px;
+		@media ($mq-max-xs) { height: 25px; }
+		@media ($mq-min-sm) { height: 40px; }
+	}
+
+	.nav-link {
+		margin: 0.1em;
+		padding: 0.4em 1em !important;
+		font-family: 'Catamaran', 'Lato', sans-serif;
+		font-weight: $font-thin;
+		color: $color-light !important;
+		font-size: 1.6rem;					/* MQ */
+
+		&:hover {
+			background-color: #fff;
+			color: black !important;
+		}
+		&.nav-active:hover::after {
+			opacity: 0;
+		}
+
+		@media ($mq-min-xl) {
+			font-size: 1.6rem;
+		}
+	}
+
+	.nav-active::after {
+		content: '';
+		display:block;
+		width: 100%;
+		height: 1px;
+		position: relative;
+		bottom: 0;
+		background: $color-light;
+	}
+
+	.navbar-toggler-right {		/* Centrage toggler mobile*/
+		position: relative !important;
+		right: -1rem !important;
+	}
+
+/*	===============	FOOTER	===============	*/
+
+	.footer {
+		z-index: 99;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		height: 40px;
+		line-height: 40px;  /* Vertically center the text*/
+	}
+
+/*	===============	BODY	===============	*/
+
+	body {
+		padding-top: 110px;			/* Espace header */
+		padding-bottom: 60px;		/* Espace footer */
+		color: $color-light;
+		/*font-family: 'Catamaran', 'Lato', sans-serif;*/
+		/*font-weight: 600;*/
+	}
+
+
+/*	===============	MEDIA QUERIES	===============	*/
+
+
+	@media ($mq-min-md) {
+		#logo { height: 30px }
+		body { padding-top: 100px }
+		.pop-cookie { top: 74px }
+		.nav-link { font-size: 1.1rem; }
+	}
+
+	@media ($mq-min-lg) {
+		body { padding-top: 110px }
+		.pop-cookie { top: 84px }
+		#logo { height: 40px }
+		.nav-link { font-size: 1.5rem; }
+	}
+

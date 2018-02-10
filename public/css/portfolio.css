@@ -1,0 +1,67 @@
+/*	===============	Both ===============	*/
+	.thumbnails {
+		padding: 0;
+		margin: 2px;
+		overflow: hidden;
+		position: relative;
+	}
+	.thumbnails > img {
+		max-height: 20rem;
+	}
+
+/*	===============	Portfolio ===============	*/
+	.caption {
+	 	display: block;
+	 	width: 100%;
+		padding: 10px 20px;
+		margin: 0;
+		font-size: 2rem;
+		font-family: 'Catamaran', 'Lato', sans-serif;
+		font-weight: 200;
+		background-color: #111;
+	}
+	.folder:hover {
+		text-decoration: none;
+	}
+	.folder:hover > .caption {
+		color: #000;
+		background-color: #fff;
+	}
+
+/*	===============	InFolder ===============	*/
+	.mask {
+		position: absolute;
+		top: 0;	left: 0;
+		width: 100%; height: 100%;
+		opacity: 0;
+		border: 2px solid #fff;
+	}
+	.photo:hover > img {
+		opacity: .75;
+	}
+	.photo:hover > .mask {
+		top: 5%; left: 5%;
+		width: 90%; height: 90%;
+		opacity: 1;
+	}
+
+/*	===============	Media Queries ===============	*/
+	@media (max-width: 500px) {					/*	===== Mobile ===== */
+
+	}
+
+	@media (min-width: 500px) {					/*	===== Small	===== */
+
+	}
+
+	@media (min-width: 700px) {					/* ===== Wide ===== */
+		.thumbnails {
+			max-width: calc(45vw - 4px);		/* Deux items par ligne */
+		}
+	}
+
+	@media (min-width: 1000px) {					/* ===== Widest ===== */
+		.thumbnails {
+			max-width: calc(30vw - 4px);		/* Trois items par ligne */
+		}
+	}

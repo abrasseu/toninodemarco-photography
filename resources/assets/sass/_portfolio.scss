@@ -1,0 +1,69 @@
+/*	===============	Both ===============	*/
+	.thumbnails {
+		margin: 2px;
+		padding: 0;
+		overflow: hidden;
+		position: relative;
+
+		@media (min-width: 700px) {
+			max-width: calc(45vw - 4px);		/* Deux items par ligne*/
+		}
+		@media (min-width: 1000px) {
+			max-width: calc(30vw - 4px);		/* Trois items par ligne*/
+		}
+
+		& > img { max-height: 20rem; }
+	}
+
+	.back-arrow {
+		float: left;
+		position: absolute;
+		font-size: 2.5rem;
+		line-height: 1.1;
+		color: $color-lightgrey;
+
+		&:hover {
+			text-decoration: none;
+			color: $color-light;
+		}
+	}
+
+/*	===============	Portfolio ===============	*/
+	.caption {
+	 	display: block;
+	 	width: 100%;
+		padding: 10px 20px;
+		margin: 0;
+		font-size: 2rem;
+		font-family: 'Catamaran', 'Lato', sans-serif;
+		font-weight: $font-thin;
+		background-color: $color-dark;
+		color: $color-light;
+	}
+	.folder:hover {
+		text-decoration: none;
+		& > .caption {
+			background-color: $color-light;
+			color: $color-darker;
+		}
+	}
+
+/*	===============	InFolder ===============	*/
+	.mask {
+		position: absolute;
+		top: 0;	left: 0;
+		width: 100%; height: 100%;
+		opacity: 0;
+		border: 1px solid #C2C2C2;
+	}
+	.photo:hover {
+		& > img {
+			opacity: .75;
+		}
+		& > .mask {
+			top: 5%; left: 5%;
+			width: 90%; height: 90%;
+			opacity: 1;
+		}
+	}
+

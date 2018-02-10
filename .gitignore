@@ -1,0 +1,12 @@
+/node_modules
+/public/storage
+/public/img
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+.env.prod
+.phpintel
+_CDG.todo
+_myHelp.txt

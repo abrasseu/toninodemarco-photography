@@ -1,0 +1,1 @@
+$(function(){function t(){var t=$("#cover option:selected, #photo option:selected").data("link");$("#preview").html("<img class='img-thumbnail' src="+t+" />")}$("#cover, #photo").change(function(){t()}),t(),$("button:reset").click(function(){$(".btn-select").removeClass("active")})});
