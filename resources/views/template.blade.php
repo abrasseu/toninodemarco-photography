@@ -1,26 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	{{-- META --}}
+	{{-- Meta --}}
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<base href="/">
+	<link rel="canonical" href="https://www.toninodemarco-photography.com">
+
+	{{-- Content Description --}}
 	<title>Tonino De Marco</title>
 	<meta name="description" content="Tonino De Marco's photography website. Splendid photographies on the wildlife in Africa and France.">
 	<meta name="keywords" content="Tonino, De Marco, photography, photographies, photo, photos, wildlife, animals, Africa, Afrique, France, image">
 	<meta name="author" content="Tonino De Marco">
+
+	{{-- Icons --}}
 	<link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>
-	<link rel="icon" sizes="140x140" href="{{ asset('favicon.jpg') }}">
+	<link rel="icon" type="image/jpg" sizes="140x140" href="{{ asset('favicon.jpg') }}">
+	<meta name="theme-color" content="#1E1E1E">
 
-	{{-- 
-		<meta name="name" content="content">
-	 --}}
+	{{-- Apple --}}
+	<link rel="apple-touch-icon" href="/favicon.jpg">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+	{{-- Twitter --}}
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Tonino De Marco">
+	<meta name="twitter:description" content="Tonino De Marco's photography website. Splendid photographies on the wildlife in Africa and France.">
+	<meta name="twitter:image" content="https://www.toninodemarco-photography.com/img/card.jpg">
+
+	{{-- Facebook --}}
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="fr_FR">
+	<meta property="og:site_name" content="Tonino De Marco">
+	<meta property="og:title" content="Tonino De Marco">
+	<meta property="og:description" content="Tonino De Marco's photography website. Splendid photographies on the wildlife in Africa and France.">
+	<meta property="og:image:width" content="100">
+	<meta property="og:image:height" content="667">
+	<meta property="og:image" content="https://www.toninodemarco-photography.com/img/card.jpg">
+	<meta property="og:url" content="https://www.toninodemarco-photography.com">
+
+
+	{{-- Responsive Scripts --}}
 	<!--[if lt IE 9]>
 		<script src	="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		<script src	="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
+	
 	{{-- CSS --}}
 	{{ HTML::style('bootstrap/css/bootstrap.min.css') }}
 	{{ HTML::style('css/all.min.css') }}
@@ -30,7 +57,7 @@
 	<script type="text/javascript">
 		document.oncontextmenu = function(e) {
 			e = e || window.event;
-			if (/^img$/i.test((e.target || e.srcElement).nodeName)) return false;
+			if (/^(img|div)$/i.test((e.target || e.srcElement).nodeName)) e.preventDefault();
 		};
 	</script>
 	

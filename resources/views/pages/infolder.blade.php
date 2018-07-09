@@ -30,7 +30,7 @@
 
 @section('scripts')
 	@parent
-	{{-- lightGallery --}}
+	{{-- lightGallery --}}
 	{{ HTML::script('lightGallery/js/lightgallery.min.js') }}
 	{{ HTML::script('lightGallery/js/lg-hash.min.js') }}
 	{{ HTML::script('lightGallery/js/lg-autoplay.min.js') }}
