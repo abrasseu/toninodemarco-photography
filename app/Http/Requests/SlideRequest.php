@@ -25,6 +25,7 @@ class SlideRequest extends FormRequest
     {
         return [
             'photo'  => 'integer|exists:photos,id',
+            'order'  => 'integer|min:0',
         ];
     }
 }

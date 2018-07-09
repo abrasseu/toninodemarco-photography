@@ -25,14 +25,14 @@
 
 	<table class="table table-responsive">
 	<tbody class="center-block">	{{-- FIXME Centrer le tableau --}}
-		<tr class="">
+		<tr>
 			<th class="lead align-middle text-right" scope="row">Maintenance</th>
 			<td>
 				<a class="my-1 btn btn-primary" 		href="{{ route('console.command', 'up') }}" role="button">Off / Up</a>
 				<a class="my-1 btn btn-outline-warning" href="{{ route('console.command', 'down') }}" role="button">On / Down</a>
 			</td>
 		</tr>
-		<tr class="">
+		<tr>
 			<th class="lead align-middle text-right" scope="row">Performance</th>
 			<td>
 				<a class="my-1 btn btn-success" 		href="{{ route('console.command', 'optimize') }}" role="button">Optimize</a>
@@ -40,7 +40,7 @@
 				<a class="my-1 btn btn-outline-info" 	href="{{ route('console.command', 'view:clear') }}" role="button">Clear compiled views</a>
 			</td>
 		</tr>
-		<tr class="">
+		<tr>
 			<th class="lead align-middle text-right" scope="row">Cache</th>
 			<td>
 				<a class="my-1 btn btn-outline-info" 	href="{{ route('console.command', 'config:cache') }}" role="button">Cache config</a>
@@ -50,14 +50,14 @@
 				<a class="my-1 btn btn-outline-warning" href="{{ route('console.command', 'route:clear') }}" role="button">Clear routes cache</a>
 			</td>
 		</tr>
-		<tr class="">
+		<tr>
 			<th class="lead align-middle text-right" scope="row">Security</th>
 			<td>
 				<a class="my-1 btn btn-primary" 		href="{{ route('console.command', 'key:generate') }}" role="button">Generate the application key</a>
 				<a class="my-1 btn btn-outline-info" 	href="{{ route('console.command', 'auth:clear-resets') }}" role="button">Flush password resets</a>
 			</td>
 		</tr>
-		<tr class="">
+		<tr>
 			<th class="lead align-middle text-right" scope="row">Databases</th>
 			<td>
 				<a class="my-1 btn btn-primary" 		href="{{ route('console.command', '') }}" role="button">Backup</a>

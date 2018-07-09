@@ -5,7 +5,6 @@
 @stop
 
 @section('affichage')
-
 <div class="container-fit">
 	{{ Form::open(['action' => 'FoldersController@store']) }}
 	
@@ -16,6 +15,5 @@
 		
 	{{ Form::close() }}
 </div>
-	
 @endsection
 

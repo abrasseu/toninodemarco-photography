@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Slide extends Model
 {
 
-	// protected $fillable = ['order'];
+	protected $fillable = ['order'];
 	public $timestamps = false;
 
 	public function photo() {
@@ -18,7 +18,7 @@ class Slide extends Model
 	protected static function boot() {
 		parent::boot();
 		static::addGlobalScope('orderAndPhoto', function (Builder $builder) {
-			$builder->orderBy('order');//->with('photo');
+			$builder->orderBy('order')->with('photo');
 		});
 	}
 

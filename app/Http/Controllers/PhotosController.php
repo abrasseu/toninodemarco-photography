@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 use App\Http\Requests\PhotoRequest;
+use Illuminate\Http\Request;
 
 class PhotosController extends Controller
 {
 
 	public function __construct() {
-		$this->middleware('auth', ['except' => ['index']]);
+		$this->middleware('auth');
 	}
 
 	/**
@@ -90,7 +91,8 @@ class PhotosController extends Controller
 	 */
 	public function edit($id)
 	{
-		//
+		$photo = Photo::findOrFail($id);
+		return view('admin.resources.photos.edit', compact('photo'));
 	}
 
 	/**
@@ -100,9 +102,12 @@ class PhotosController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(PhotoRequest $request, $id)
+	public function update(Request $request, $id)
 	{
-		//
+		$photo = Photo::findOrFail($id);
+		$photo->caption = $request->input('caption');
+		$photo->save();
+		return redirect(route('photos.index'))->withSuccess("La photo a été modifiée.");
 	}
 
 	/**

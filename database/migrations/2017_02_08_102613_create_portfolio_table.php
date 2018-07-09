@@ -30,7 +30,7 @@ class CreatePortfolioTable extends Migration
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
                     
-            $table->primary(['folder_id', 'photo_id'])->unique()->index();
+            $table->primary(['folder_id', 'photo_id']);
         });
     }
 

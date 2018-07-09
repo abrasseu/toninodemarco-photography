@@ -26,6 +26,7 @@ class FolderRequest extends FormRequest
         return [
             'name'   => 'required|string|max:255',
             'cover'  => 'integer|exists:photos,id',
+            'order'  => 'integer|min:0',
         ];
     }
 }

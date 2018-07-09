@@ -13,7 +13,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Public
+| 		Public
 |--------------------------------------------------------------------------
 */
 	// Home
@@ -36,7 +36,7 @@
 	Route::get('mentions-legales', 'PagesController@mentionsLegales')->name('mentions-legales');
 /*
 |--------------------------------------------------------------------------
-| Admin
+| 		Admin
 |--------------------------------------------------------------------------
 */
 	Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function()
@@ -50,29 +50,32 @@
 		Route::get('folders/{folder}/select', 'InFolderController@select')->name('folders.select');
 		Route::post('folders/{folder}/updateAll', 'InFolderController@updateAll')->name('folders.updateAll');
 
+		// Resource controllers
 		Route::resource('links', 'LinksController');
 		Route::resource('links', 'LinksController');
 		Route::resource('photos', 'PhotosController');
 		Route::resource('slides', 'SlidesController');
 		Route::resource('folders', 'FoldersController');
 
-		// FIXME method_field('METH')
-
 		// Destroy via link
 		Route::get('links/{link}/destroy', 'LinksController@destroy')->name('links.destroy');
 		Route::get('folders/{folder}/destroy', 'FoldersController@destroy')->name('folders.destroy');
 		Route::get('slides/{slide}/destroy', 'SlidesController@destroy')->name('slides.destroy');
-
 		Route::get('photos/{photo}/destroy', 'PhotosController@destroy')->name('photos.destroy');
 		Route::get('photos/{photo}/destroy/{force?}', 'PhotosController@destroy')->name('photos.destroy.force');
 
+		// Order
+		Route::post('slides/order', 'SlidesController@updateOrder')->name('slides.order');
+		Route::post('folders/order', 'FoldersController@updateOrder')->name('folders.order');
+		Route::put('folders/{folder}/order', 'InFolderController@updateOrder')->name('folders.in.order');
+
+		// InFolder Controller
 		Route::get('folders/{folder}/add', 'InFolderController@add')->name('folders.add');
 		Route::put('folders/{folder}/add', 'InFolderController@attach')->name('folders.attach');
 		Route::get('folders/{folder}/photos/{photo}', 'InFolderController@detach')->name('folders.detach');
 
 		// Console
-		Route::group(['prefix' => 'console'], function()
-		{
+		Route::group(['prefix' => 'console'], function() {
 			Route::get('', 'AdminConsoleController@index')->name('console.index');
 			Route::get('{command}/{force?}', 'AdminConsoleController@command')->name('console.command');
 		});
@@ -94,21 +97,22 @@ GET|HEAD		| admin/links/{link}/edit      | links.edit           | App\Http\Contr
 
 /*
 |--------------------------------------------------------------------------
-| Authentication
+| 		Authentication
 |--------------------------------------------------------------------------
 */
 
-	// Authentication Routes...
+	// Authentication Routes
 	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 	Route::post('login', 'Auth\LoginController@login');
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-	// Registration Routes...
+	// Registration Routes
 	// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 	// Route::post('register', 'Auth\RegisterController@register');
-	// TODO : Block register
+	// Block register
+	Route::any('register', 'Auth\LoginController@showLoginForm');
 
-	// Password Reset Routes...
+	// Password Reset Routes
 	Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
 	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 	Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');

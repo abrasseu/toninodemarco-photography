@@ -4,69 +4,44 @@
 	All your folders <span class="badge badge-primary">{{ $folders->count() }}</span>
 @stop
 
+
+@section('controls')
+	<a href="{{ route('folders.create') }}" class="m-1 btn btn-primary">Create a folder</a>
+	<div class="m-1 d-inline-block">
+		{{ Form::open(['action' => 'FoldersController@updateOrder']) }}
+			{{-- {{ method_field('PUT') }} --}}
+			<div id="order-inputs" class="d-none"></div>
+			<input id="order-btn" class="btn btn-secondary" disabled="true" type="submit" value="Update order">
+		{{ Form::close() }}	
+	</div>
+@stop
+
 @section('affichage')
-
-{{-- table-responsive --}}
-<table class="table table-bordered table-hover center-table ">
-	<col width="100">
-	<thead class="thead-inverse ">
-		<tr>
-			<th>ID / Order</th>
-			<th>Name</th>
-			<th>Cover</th>
-			<th>Controls</th>
-		</tr>
-	</thead>
-	<tbody class="table-sm center-table">
-
+<div id="orderable" class="row">
 	@foreach ($folders as $folder)
-		<tr class="">
-			<th rowspan="{{ $folder->photos->count() + 3 }}" scope="row">{{ $folder->id }}</th>
-			<td><strong class="text-info">{{ $folder->name }}</strong></td>
-			<td><img class="img-fluid thumb" src="{{ asset($folder->cover->path) }}"></td>
-			<td>
-				<a href="{{ route('folders.select', $folder) }}" class="btn btn-outline-success">Select photos</a>
-				<a href="{{ route('folders.edit', $folder) }}" class="btn btn-outline-warning">Modify</a>
-				<a href="{{ route('folders.destroy', $folder) }}" class="btn btn-outline-danger">Delete</a>
-
-			</td>
-		</tr>
-
-		<tr class="table-active">
-			<th colspan="">Order</th>
-			<th colspan="">Photo</th>
-			<th colspan="">Controls</th>
-		</tr>
-
-		@foreach ($folder->photos as $inFolderPhoto)
-
-		<tr class="">
-			<th scope="row">{{ $inFolderPhoto->id }}</th>
-			<td><img class="img-fluid thumb" src="{{ asset($inFolderPhoto->path) }}"><br>{{ $inFolderPhoto->caption }}</td>
-			<td>
-				{{-- <a href="{{ route('photos.edit', $photo) }}" class="btn btn-outline-warning">Modify</a> --}}
-				<a href="{{ route('folders.detach', [$folder, $inFolderPhoto]) }}" class="btn btn-outline-danger">Detach</a>
-			</td>
-		</tr>
-
-		@endforeach
-
-		<tr class="folder-delimiter">
-			{{-- <td colspan="2">Add a photo in this folder</td> --}}
-			<td colspan="3">
-				<a href="{{ route('folders.add', $folder) }}" class="btn btn-link btn-block">Add a photo in this folder</a>
-			</td>
-		</tr>
-			
+	<div class="col-6 col-md-4 col-lg-3 px-1" data-id="{{ $folder->id }}">
+		<div class="card mt-2">
+			<div class="card-img-top" style="background-image: url('{{ asset($folder->cover->path) }}'); height: 200px; 
+				background-size: cover; background-position: center;"></div>
+			<div class="card-block">
+				<h4 class="card-title">{{ $folder->name, 'No name'}}</h4>
+			</div>
+			<div class="card-footer text-center">
+				<a href="{{ route('folders.show', $folder) }}" class="mb-1 btn btn-primary">Open</a>
+				<a href="{{ route('folders.select', $folder) }}" class="mb-1 btn btn-outline-success">Select photos</a>
+				<br>
+				<a href="{{ route('folders.edit', $folder) }}" class="mb-1 btn btn-outline-warning">Modify</a>
+				<a href="{{ route('folders.destroy', $folder) }}" class="mb-1 btn btn-outline-danger">Delete</a>
+			</div>
+		</div>
+	</div>
 	@endforeach
+</div>
+@endsection
 
-		<tr class="folder-delimiter">
-			<td colspan="4">
-				<a href="{{ route('folders.create') }}" class="btn btn-block btn-link">Add a new folder</a>
-			</td>
-		</tr>
 
-	</tbody>
-</table>
-
+@section('scripts')
+	@parent
+	{{ HTML::script('js/Sortable.js') }}
+	{{ HTML::script('js/updateOrder.js') }}
 @endsection

@@ -4,7 +4,6 @@
 	Add a slide
 @stop
 
-
 @section('affichage')
 <div class="container-fit">
 	{{ Form::open(['action' => 'SlidesController@store']) }}

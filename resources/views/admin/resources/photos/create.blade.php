@@ -5,8 +5,6 @@
 @stop
 
 @section('affichage')
-
-
 <div class="container-fit">
 	{{ Form::open(['action' => 'PhotosController@store', 'files' => true]) }}
 
@@ -18,5 +16,4 @@
 		</div>
 	{{ Form::close() }}
 </div>
-	
 @endsection

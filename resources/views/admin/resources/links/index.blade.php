@@ -5,7 +5,7 @@
 @stop
 
 @section('controls')
-	<a id="addLink" href="{{ route('links.create') }}" class="btn btn-primary btn-lg">Add a new link</a>
+	<a id="addLink" href="{{ route('links.create') }}" class="m-1 btn btn-primary">Add a new link</a>
 @stop
 
 

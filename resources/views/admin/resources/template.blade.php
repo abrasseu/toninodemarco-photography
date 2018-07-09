@@ -1,28 +1,17 @@
 @extends('admin.template')
 
 @section('content')
-
-@yield('form')
-<div class="row mb-md-4">
-	<div class="col-12">
-		<h1 class="text-center mt-4 mb-4">
+	@yield('form')
+	<div class="mt-2 mb-3 container-fluid d-flex flex-wrap justify-content-around align-content-center">
+		<h1 class="text-center mt-3 mb-3">
 			@yield('title')
 		</h1>
+		@if (!empty($__env->yieldContent('controls')))
+			<div class="d-flex justify-content-center align-items-center">
+				@yield('controls')
+			</div>
+		@endif
 	</div>
-	{{-- Controls --}}
-	{{-- TODO hidden si pas de controls -> section puis component ? --}}
-	<div class="hidden-sm-down col-12 text-right absolute">
-		<div class="btn-group-vertical" role="group" aria-label="Controls">
-			@yield('controls')
-		</div>
-	</div>
-</div>
 
-{{-- Mobile Controls --}}
-<div class="text-center mb-4 hidden-md-up">
-	@yield('controls')
-</div>
-
-@yield('affichage')
-
+	@yield('affichage')
 @endsection

@@ -4,16 +4,15 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LinkRequest extends FormRequest
+class OrderRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
 	 * @return bool
 	 */
-	public function authorize()
-	{
-		return \Auth::check();
+	public function authorize() {
+		return true;
 	}
 
 	/**
@@ -24,9 +23,8 @@ class LinkRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'caption' 	=> 'required|string|max:255',
-			'link' 	=> 'required|url|max:255|unique:links',
-            'order'  => 'integer|min:0',
+			'orderables' 	=> 'required|array',
+			'orderables.*' 	=> 'required|integer'
 		];
 	}
 }

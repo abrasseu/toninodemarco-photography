@@ -14,7 +14,7 @@ class Folder extends Model
 		return $this->belongsTo('App\Photo');
 	}
 	public function photos() {
-		return $this->belongsToMany('App\Photo', 'portfolio', 'folder_id', 'photo_id')->orderBy('order');
+		return $this->belongsToMany('App\Photo', 'portfolio', 'folder_id', 'photo_id');
 	}
 	
 	public function scopeHasPhotos($query)
@@ -26,13 +26,5 @@ class Folder extends Model
 					->whereRaw('portfolio.folder_id = folders.id');
 		});
 	}
-
-	protected static function boot() {
-		parent::boot();
-		static::addGlobalScope('orderAndPhotos', function (Builder $builder) {
-			$builder->orderBy('order');//->with('photos');
-		});
-	}
-
 
 }

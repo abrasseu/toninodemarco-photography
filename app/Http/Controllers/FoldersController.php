@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Folder;
 use App\Photo;
 use App\Http\Requests\FolderRequest;
+use App\Http\Requests\OrderRequest;
 
 class FoldersController extends Controller
 {
 
 	public function __construct() {
-		$this->middleware('auth', ['except' => ['index']]);
+		$this->middleware('auth');
 	}
 
 	/**
@@ -20,7 +21,7 @@ class FoldersController extends Controller
 	 */
 	public function index()
 	{
-		$folders = Folder::all()->sortBy('id')->load('cover', 'photos');
+		$folders = Folder::orderBy('order')->with('cover', 'photos')->get();
 		return view('admin.resources.folders.index', compact('folders'));
 	}
 
@@ -31,7 +32,7 @@ class FoldersController extends Controller
 	 */
 	public function create()
 	{
-		$photos = Photo::get()->sortBy('id');
+		$photos = Photo::all();
 		return view('admin.resources.folders.create', compact('photos'));
 	}
 
@@ -47,7 +48,7 @@ class FoldersController extends Controller
 		$folder->name = $request->input('name');
 		$folder->cover_id = Photo::findOrFail($request->input('cover'))->id;
 		$folder->save();
-		return redirect(route('folders.index'))->withSuccess("Le folder '" . $folder->name ."' a été ajouté.");
+		return redirect(route('folders.index'))->withSuccess("Le dossier '" . $folder->name ."' a été ajouté.");
 	}
 
 	/**
@@ -58,7 +59,10 @@ class FoldersController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		$folder = Folder::with(['photos' => function($query) {
+			$query->orderBy('order');
+		}])->findOrFail($id);
+		return view('admin.resources.folders.show', compact('folder'));
 	}
 
 	/**
@@ -69,7 +73,7 @@ class FoldersController extends Controller
 	 */
 	public function edit($id)
 	{
-		$photos = Photo::get()->sortBy('id');
+		$photos = Photo::all();
 		$folder = Folder::findOrFail($id);
 		return view('admin.resources.folders.edit', compact('folder', 'photos'));
 	}
@@ -86,8 +90,9 @@ class FoldersController extends Controller
 		$folder = Folder::findOrFail($id);
 		$folder->name = $request->input('name');
 		$folder->cover_id = Photo::findOrFail($request->input('cover'))->id;
+		$folder->order = $request->input('order');
 		$folder->save();
-		return redirect(route('folders.index'))->with("success", "Le folder " . $folder->name . " a mis à jour.");
+		return redirect(route('folders.index'))->with("success", "Le dossier " . $folder->name . " a mis à jour.");
 	}
 
 	/**
@@ -100,7 +105,14 @@ class FoldersController extends Controller
 	{
 		$oldFolder = Folder::findOrFail($id)->name;
 		Folder::destroy($id);
-		return redirect(route('folders.index'))->withSuccess("Le folder " . $oldFolder . " a été supprimé.");
+		return redirect(route('folders.index'))->withSuccess("Le dossier " . $oldFolder . " a été supprimé.");
+	}
+
+
+	public function updateOrder(OrderRequest $request) {
+		foreach ($request->input('orderables') as $order => $id)
+			Folder::where('id', $id)->update(['order' => $order]);
+		return redirect()->route('folders.index')->withSuccess("L'ordre des dossiers a été modifié.");
 	}
 
 }

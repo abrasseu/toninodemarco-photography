@@ -4,7 +4,9 @@ body {
 	background-color: #e5e5e5;
     /*word-wrap: break-word;*/
 }
-
+form {
+	margin: 0;
+}
 .nav-links.active {
 	color: #FFFFFF !important;
 }

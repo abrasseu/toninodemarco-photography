@@ -5,7 +5,6 @@
 @stop
 
 @section('affichage')
-
 <div class="container-fit">
 	{{ Form::open(['action' => ['InFolderController@attach', $folder]]) }}
 		{{ method_field('PUT') }}
@@ -16,5 +15,4 @@
 
 	{{ Form::close() }}
 </div>
-	
 @endsection

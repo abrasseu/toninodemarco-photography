@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Photo extends Model
 {
 
-	protected $fillable = ['path', 'caption'];
+	protected $fillable = ['path', 'caption', 'order'];
 	public $timestamps = false;
 
 	// Relations
@@ -23,8 +23,7 @@ class Photo extends Model
 
 
 	public function scopeNoSlides($query) {
-		return $query->whereNotExists(function($query)
-		{
+		return $query->whereNotExists(function($query) {
 			$query->select(\DB::raw(1))
 					->from('slides')
 					->whereRaw('slides.photo_id = photos.id');
@@ -32,8 +31,7 @@ class Photo extends Model
 	}
 
 	public function scopeNotInFolder($query, $folder_id) {							// TODO : Fuuuuuuuuuuuuuuuuuuuuuuu
-		return $query->whereNotIn('id', function($query) use ($folder_id)
-		{
+		return $query->whereNotIn('id', function($query) use ($folder_id) {
 			$query->select('photo_id')
 					->from('portfolio')
 					->where('folder_id', '=', $folder_id);
