@@ -15,7 +15,7 @@
 
 	{{-- TODO : +folder title +bouton retour folders --}}
 	<div id='lightgallery' class='d-flex flex-wrap justify-content-center'>
-		@foreach ($folder->photos as $thumbnail)
+		@foreach ($photos as $thumbnail)
 				<a class='thumbnails photo transitions'
 					title='{{ $thumbnail->caption }}'				
 					href ='{{ asset($thumbnail->path) }}'
@@ -24,6 +24,9 @@
 					<div class="mask d-flex align-items-center justify-content-center text-white font-weight-bold display-1"></div>
 				</a>
 		@endforeach
+	</div>
+	<div class="my-3">
+		{{ $photos->links() }}
 	</div>
 </main>
 @endsection

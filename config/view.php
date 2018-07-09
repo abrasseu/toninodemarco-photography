@@ -30,6 +30,14 @@ return [
 
 	'compiled' => realpath(storage_path('framework/views')),
 
+
+	/*
+	|--------------------------------------------------------------------------
+	| Custom Settings
+	|--------------------------------------------------------------------------
+	| Routes & Pagination
+	*/
+
 	'routes' => [
 		'home'      => 'Home',
 		'portfolio' => 'Portfolio',
@@ -47,4 +55,8 @@ return [
 		'console.index'	=> 'Console',
 	],
 
+	'pagination' => [
+		'admin' 	=> 50,
+		'public' 	=> 25
+	],
 ];

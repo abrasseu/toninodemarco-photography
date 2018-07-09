@@ -19,9 +19,8 @@ class FoldersController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index()
-	{
-		$folders = Folder::orderBy('order')->with('cover', 'photos')->get();
+	public function index() {
+		$folders = Folder::orderBy('order')->with('cover', 'photos')->paginate(config('view.pagination.admin'))->withPath('');
 		return view('admin.resources.folders.index', compact('folders'));
 	}
 
@@ -30,8 +29,7 @@ class FoldersController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create()
-	{
+	public function create() {
 		$photos = Photo::all();
 		return view('admin.resources.folders.create', compact('photos'));
 	}
@@ -42,8 +40,7 @@ class FoldersController extends Controller
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(FolderRequest $request)
-	{
+	public function store(FolderRequest $request) {
 		$folder = new Folder();
 		$folder->name = $request->input('name');
 		$folder->cover_id = Photo::findOrFail($request->input('cover'))->id;
@@ -57,8 +54,7 @@ class FoldersController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id)
-	{
+	public function show($id) {
 		$folder = Folder::with(['photos' => function($query) {
 			$query->orderBy('order');
 		}])->findOrFail($id);
@@ -71,8 +67,7 @@ class FoldersController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id)
-	{
+	public function edit($id) {
 		$photos = Photo::all();
 		$folder = Folder::findOrFail($id);
 		return view('admin.resources.folders.edit', compact('folder', 'photos'));
@@ -85,8 +80,7 @@ class FoldersController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(FolderRequest $request, $id)
-	{
+	public function update(FolderRequest $request, $id) {
 		$folder = Folder::findOrFail($id);
 		$folder->name = $request->input('name');
 		$folder->cover_id = Photo::findOrFail($request->input('cover'))->id;
@@ -101,8 +95,7 @@ class FoldersController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id)
-	{
+	public function destroy($id) {
 		$oldFolder = Folder::findOrFail($id)->name;
 		Folder::destroy($id);
 		return redirect(route('folders.index'))->withSuccess("Le dossier " . $oldFolder . " a été supprimé.");

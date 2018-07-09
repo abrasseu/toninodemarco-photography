@@ -79,6 +79,58 @@ body {
     /*font-weight: 600;*/
 }
 
+/*	===============	PAGINATION		===============	*/
+.pagination {
+	justify-content: center;
+}
+.pagination > li {
+}
+.pagination > li > a,
+.pagination > li > span {
+	position: relative;
+	display: block;
+	padding: .75rem 1.5rem;
+	font-size: 1.25rem;
+	line-height: 1.5;
+	margin-left: -1px;
+	color: #fff;
+	border: 1px solid #dee2e6;
+}
+.pagination > li.disabled > a,
+.pagination > li.disabled > span {
+	color: #888;
+	pointer-events: none;
+	cursor: auto;
+	border-color: #dee2e6;
+}
+.pagination > li.active > a,
+.pagination > li.active > span {
+	background-color: #fff;
+	color: #1e1e1e;
+}
+.pagination > li > a:not(:disabled):not(.disabled),
+.pagination > li > span:not(:disabled):not(.disabled) {
+	cursor: pointer;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+	border-top-right-radius: .3rem;
+	border-bottom-right-radius: .3rem;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+	border-top-left-radius: .3rem;
+	border-bottom-left-radius: .3rem;
+}
+.pagination > li:hover > a,
+.pagination > li:hover > span {
+	z-index: 2;
+	color: #1e1e1e;
+	text-decoration: none;
+	background-color: #fff;
+	border-color: #dee2e6;
+}
+
 /*	===============	MEDIA QUERIES	===============	*/
 @media (min-width: 768px) {
 	#logo {

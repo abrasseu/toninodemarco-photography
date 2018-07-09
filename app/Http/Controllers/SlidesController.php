@@ -21,7 +21,7 @@ class SlidesController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$slides = Slide::all()->load('photo');
+		$slides = Slide::orderBy('order')->with('photo')->paginate(config('views.pagination.admin'))->withPath('');
 		return view('admin.resources.slides.index', compact('slides'));
 	}
 

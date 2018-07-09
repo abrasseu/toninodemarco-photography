@@ -1,7 +1,7 @@
 @extends('admin.resources.template')
 
 @section('title')
-	All your folders <span class="badge badge-primary">{{ $folders->count() }}</span>
+	All your folders <span class="badge badge-primary">{{ $folders->total() }}</span>
 @stop
 
 
@@ -18,7 +18,7 @@
 
 @section('affichage')
 <div id="orderable" class="row">
-	@foreach ($folders as $folder)
+	@foreach ($folders->items() as $folder)
 	<div class="col-6 col-md-4 col-lg-3 px-1" data-id="{{ $folder->id }}">
 		<div class="card mt-2">
 			<div class="card-img-top" style="background-image: url('{{ asset($folder->cover->path) }}'); height: 200px; 
@@ -36,6 +36,9 @@
 		</div>
 	</div>
 	@endforeach
+	<div class="col-12 my-3">
+		{{ $folders }}
+	</div>
 </div>
 @endsection
 

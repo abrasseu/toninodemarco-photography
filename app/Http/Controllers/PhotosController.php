@@ -18,9 +18,8 @@ class PhotosController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index()
-	{
-		$photos = Photo::all()->sortBy('id');
+	public function index() {
+		$photos = Photo::orderBy('id')->paginate(config('view.pagination.admin'))->withPath('');
 		return view('admin.resources.photos.index', compact('photos'));
 	}
 
@@ -29,8 +28,7 @@ class PhotosController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create()
-	{
+	public function create() {
 		return view('admin.resources.photos.create');
 	}
 
@@ -40,8 +38,7 @@ class PhotosController extends Controller
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(PhotoRequest $request)
-	{
+	public function store(PhotoRequest $request) {
 		if (\DB::table('photos')->first() == NULL) {
 			$lastId = 1;
 		} else {
@@ -78,8 +75,7 @@ class PhotosController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id)
-	{
+	public function show($id) {
 		//
 	}
 
@@ -89,8 +85,7 @@ class PhotosController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id)
-	{
+	public function edit($id) {
 		$photo = Photo::findOrFail($id);
 		return view('admin.resources.photos.edit', compact('photo'));
 	}
@@ -102,8 +97,7 @@ class PhotosController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id)
-	{
+	public function update(Request $request, $id) {
 		$photo = Photo::findOrFail($id);
 		$photo->caption = $request->input('caption');
 		$photo->save();
@@ -116,8 +110,7 @@ class PhotosController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id, $force = false)
-	{
+	public function destroy($id, $force = false) {
 		$photo = Photo::findOrFail($id);
 		$usages = $photo->usages();
 		// dd(public_path() . DIRECTORY_SEPARATOR  . $photo->path);
@@ -160,8 +153,7 @@ class PhotosController extends Controller
 			unlink(public_path() . DIRECTORY_SEPARATOR . $photo->path);
 			return redirect(route('photos.index'))->withSuccess($message);
 
-		} else
-		{
+		} else {
 			// TODO : clean this mess
 			$errorMessage = "La photo " . $photo->caption . " est utilisée en tant que " . implode(', ', $usages) . "."; 
 			if($force != 'nope') {

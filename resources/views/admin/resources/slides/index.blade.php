@@ -1,7 +1,7 @@
 @extends('admin.resources.template')
 
 @section('title')
-	All your slides <span class="badge badge-primary">{{ $slides->count() }}</span>
+	All your slides <span class="badge badge-primary">{{ $slides->total() }}</span>
 @stop
 
 @section('controls')
@@ -18,7 +18,7 @@
 
 @section('affichage')
 	<div id="orderable" class="row">
-		@foreach ($slides as $slide)
+		@foreach ($slides->items() as $slide)
 		<div class="col-6 col-md-4 col-lg-3 px-1" data-id="{{ $slide->id }}">
 			<div class="card mt-2 shadow">
 				<div class="card-img-top" style="background-image: url('{{ asset($slide->photo->path) }}'); height: 200px; 
@@ -33,6 +33,9 @@
 			</div>
 		</div>
 		@endforeach
+	</div>
+	<div class="col-12 my-3">
+		{{ $slides }}
 	</div>
 @stop
 

@@ -1,7 +1,7 @@
 @extends('admin.resources.template')
 
 @section('title')
-	All your photos <span class="badge badge-primary">{{ $photos->count() }}</span>
+	All your photos <span class="badge badge-primary">{{ $photos->total() }}</span>
 @stop
 
 @section('controls')
@@ -10,7 +10,7 @@
 
 @section('affichage')
 <div class="row">
-	@foreach ($photos as $photo)
+	@foreach ($photos->items() as $photo)
 	<div class="col-6 col-md-4 col-lg-3 px-1">
 		<div class="card mt-2">
 			<a href="{{ asset($photo->path) }}" class="d-block card-img-top"
@@ -26,5 +26,8 @@
 		</div>
 	</div>
 	@endforeach
+	<div class="col-12 my-3">
+		{{ $photos }}
+	</div>
 </div>
 @endsection

@@ -42,16 +42,14 @@ class PagesController extends Controller
 			// Retourne la vue avec tous les dossiers
 			$folders = Folder::hasPhotos()->orderBy('order')->with('photos')->get();
 			return view('pages.portfolio', compact('folders'));
-
 		} else {
 			// Vérifie si le dossier existe via l'id
-			$folder = Folder::with(['photos' => function($query) {
-				$query->orderBy('order');
-			}])->findOrFail($id);
+			$folder = Folder::findOrFail($id);
+			$photos = $folder->photos()->orderBy('order')->paginate(config('view.pagination.public'));
 
 			// Le dossier existe et Contient des photos
 			if (!is_null($folder) && !$folder->photos->isEmpty())
-				return view('pages.infolder', compact('folder'));
+				return view('pages.infolder', compact('folder', 'photos'));
 			abort(404);
 		}
 	}

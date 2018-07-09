@@ -2,7 +2,7 @@ body {
 	padding-top: 70px;
 	padding-bottom: 60px;
 	background-color: #e5e5e5;
-    /*word-wrap: break-word;*/
+	/*word-wrap: break-word;*/
 }
 form {
 	margin: 0;
@@ -17,6 +17,54 @@ form {
 	padding: 20px 30px;
 }
 
+/*	===============	PAGINATION		===============	*/
+.pagination {
+	justify-content: center;
+}
+.pagination > li {
+}
+.pagination > li > a,
+.pagination > li > span {
+	position: relative;
+	display: block;
+	padding: .75rem 1.5rem;
+	font-size: 1.25rem;
+	line-height: 1.5;
+	margin-left: -1px;
+	color: #007bff;
+	background-color: #fff;
+	border: 1px solid #dee2e6;
+}
+.pagination > li.disabled > a,
+.pagination > li.disabled > span {
+	color: #6c757d;
+	pointer-events: none;
+	cursor: auto;
+	background-color: #fff;
+	border-color: #dee2e6;
+}
+.pagination > li > a:not(:disabled):not(.disabled),
+.pagination > li > span:not(:disabled):not(.disabled) {
+	cursor: pointer;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+	border-top-right-radius: .3rem;
+	border-bottom-right-radius: .3rem;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+	border-top-left-radius: .3rem;
+	border-bottom-left-radius: .3rem;
+}
+.pagination > li:hover > a,
+.pagination > li:hover > span {
+	z-index: 2;
+	color: #0056b3;
+	text-decoration: none;
+	background-color: #e9ecef;
+	border-color: #dee2e6;
+}
 
 .thumb {
 	max-width: 100px;

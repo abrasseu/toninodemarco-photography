@@ -7,7 +7,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Tonino De Marco</title>
-	<meta name="description" content="">
 
 
 	<!--[if lt IE 9]>
