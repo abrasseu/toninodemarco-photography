@@ -77,7 +77,7 @@
 @yield('content')
 
 {{-- Footer --}}
-<footer class="footer container text-center text-muted {{ Route::currentRouteName()=='home' ? 'transparent' : 'grey vshadow' }}">
+<footer class="footer container text-center text-muted {{ Route::currentRouteName()=='home' ? 'transparent' : 'grey' }}">
 	<a href="{{ route('mentions-legales') }}" title="Mentions Légales" class="mx-2 link-footer {{ Route::currentRouteName()=='home' ? ' text-white' : 'text-muted' }}">Mentions légales</a>
 	<span class="mx-2 {{ Route::currentRouteName()=='home' ? ' text-white' : 'text-muted' }}">All rights reserved &copy; Tonino De Marco</span>
 	{{-- <span class="mx-2 {{ Route::currentRouteName()=='home' ? ' text-white' : 'text-muted' }}">Tous droits réservés Tonino De Marco</span> --}}
