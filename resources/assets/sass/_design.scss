@@ -34,8 +34,9 @@
 		        box-shadow: 0 0 5px 3px rgba(30, 30, 30, .8);
 	}
 	.transparent {
-		background-color: rgba(0,0,0,0.35) !important; 
-		/*box-shadow: none !important;*/
+		background-color: transparent !important; 
+		// background-color: rgba(0,0,0,0.35) !important; 
+		// box-shadow: none !important;
 	}
 	.contour {
 		border: 1px solid $color-lightgrey;
